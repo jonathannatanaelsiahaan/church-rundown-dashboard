@@ -1,0 +1,41 @@
+{
+  "name": "church-rundown-dashboard",
+  "version": "0.0.1",
+  "description": "Church Rundown Dashboard For Admin User",
+  "private": false,
+  "main": "dist/index.js",
+  "dependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/runtime": "7.0.0-beta.55",
+    "axios": "^0.18.0",
+    "compression-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "express": "^4.17.1",
+    "mini-css-extract-plugin": "^0.4.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-google-maps": "9.4.5",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "webpack --progress --config webpack.config.js",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "jonathannael12@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.16.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}

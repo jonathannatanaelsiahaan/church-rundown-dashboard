@@ -1,0 +1,17 @@
+li {
+  list-style: none;
+}
+
+body {
+  font: 400 14px/1rem 'Open Sans', sans-serif;
+  background-color: #f2f6fc;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "pnum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1em;
+}
