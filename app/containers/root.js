@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
+import Store from "stores/store";
 
-import Store from "../stores/store";
 import Main from "components/main";
 import "containers/root.css";
 
@@ -9,7 +9,7 @@ export default class Root extends React.Component {
   constructor() {
     super();
 
-    this._store = Store.create();
+    Store.store = Store.create();
 
     global.store = this._store;
   }
@@ -20,7 +20,7 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <Provider store={ this.store }>
+      <Provider store={ Store.store }>
         <Main />
       </Provider>
     );

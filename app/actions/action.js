@@ -1,19 +1,25 @@
 class Action {
-    static buildKeyValue(klass, element) {
-      let protocol;
-  
-      protocol = new klass(element);
-      return { [protocol.primaryKey]: protocol };
+    static buildKeyValue(Klass, element) {
+      const protocol = new Klass(element);
+
+      if (typeof protocol.primaryKey !== "undefined") {
+        return { [protocol.primaryKey]: protocol.toJson() };
+      }
+
+      return {};
     }
   
-    static buildKeyValueList(klass, elements = []) {
-      let keyValueList;
-  
-      keyValueList = {};
-      for (let element of elements) {
-        keyValueList = { ...keyValueList, ...this.buildKeyValue(klass, element) };
-      }
-  
+    static buildKeyValueList(Klass, elements = []) {
+      let keyValueList = {};
+
+      elements.map(
+        element =>
+          (keyValueList = {
+            ...keyValueList,
+            ...this.buildKeyValue(Klass, element)
+          })
+      );
+        
       return keyValueList;
     }
 }

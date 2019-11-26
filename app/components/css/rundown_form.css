@@ -1,0 +1,13 @@
+.container {
+    display: 'flex';
+    flex-wrap: 'wrap';
+    padding: 20px 20px;
+}
+
+.input {
+    margin: 1;
+}
+
+.button {
+    margin: 1;
+}

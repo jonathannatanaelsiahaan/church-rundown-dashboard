@@ -1,5 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Autoprefixer = require("autoprefixer");
+const PostcssCalc = require("postcss-calc");
+
+const postcssPlugins = [
+    Autoprefixer({
+      browsers: ["last 2 versions", "> 5%"],
+      cascade: false
+    }),
+    PostcssCalc()
+];  
 
 module.exports = {
     entry: './app/index.js',
@@ -17,14 +27,21 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
+                //   {
+                //     loader: MiniCssExtractPlugin.loader,
+                //     options: {
+                //       publicPath: '../',
+                //       hmr: process.env.NODE_ENV === 'development',
+                //     },
+                //   },
+                //   'css-loader',
+                  'style-loader',
                   {
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                      publicPath: '../',
-                      hmr: process.env.NODE_ENV === 'development',
-                    },
+                      loader: "css-loader",
+                      options: {
+                        modules: true,
+                      },
                   },
-                  'css-loader',
                 ],
               },
         ]
@@ -45,6 +62,9 @@ module.exports = {
             containers: path.resolve(__dirname, "app/containers/"),
             reducers: path.resolve(__dirname, "app/reducers/"),
             stores: path.resolve(__dirname, "app/stores"),
+            usecase: path.resolve(__dirname, "app/usecase"),
+            requests: path.resolve(__dirname, "app/requests"),
+            protocols: path.resolve(__dirname, "app/protocols")
         }
     }
 }

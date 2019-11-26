@@ -2,11 +2,11 @@ import React from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route,
-	Link
+	Route
 } from "react-router-dom";
 import Register from "components/register";
 import Login from "components/login";
+import Dashboard from "components/dashboard";
 
 class Main extends React.Component {
 	render() {
@@ -18,6 +18,9 @@ class Main extends React.Component {
 					</Route>
 					<Route path="/login">
 						<Login />
+					</Route>
+					<Route path="/dashboard">
+						<Dashboard />
 					</Route>
 				</Switch>
 			</Router>
