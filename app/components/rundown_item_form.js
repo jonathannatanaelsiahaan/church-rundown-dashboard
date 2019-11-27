@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import RichTextEditor from 'react-rte';
 
 import RundownItemProtocol from "protocols/rundown_item_protocol";
+import RundownItemUsecase from "usecase/rundown_item_usecase";
 
 class RundownItemForm extends React.Component {
     constructor(props) {
@@ -29,7 +30,18 @@ class RundownItemForm extends React.Component {
         }
     };
 
-    handleClick() {
+    componentDidMount() {
+        if(this.props.action == "EDIT") {
+            document.querySelector("#title").value = this.props.data.title;
+            document.querySelector("#subtitle").value = this.props.data.subtitle;
+            
+            this.setState({
+                 textEditorValue: RichTextEditor.createValueFromString(this.props.data.text, 'html')
+            })
+        }
+    }
+
+    handleClickSave() {
         const titleDom = document.querySelector("#title")
         const subtitleDom = document.querySelector("#subtitle")
 
@@ -37,10 +49,28 @@ class RundownItemForm extends React.Component {
             title: titleDom.value,
             subtitle: subtitleDom.value,
             text: this.state.textEditorValue.toString('html'),
-            rundownId: this.props.rundown.id
+            rundownId: this.props.rundownId
         })
         
-        RundownItemUsecase.create(rundownItem.toJson())
+        if (this.props.action == "CREATE") {
+            RundownItemUsecase.create(rundownItem.toJson())
+
+            this.props.triggerHide();
+            return
+        }
+
+        if (this.props.action == "EDIT") {
+            const rundownItemData = rundownItem.toJson()
+            rundownItemData.id = this.props.data.ID;
+            RundownItemUsecase.update(rundownItemData)
+
+            this.props.triggerHide();
+            return
+        }
+    }
+
+    handleClickCancel() {
+        this.props.triggerHide();
     }
 
     render() {
@@ -81,12 +111,23 @@ class RundownItemForm extends React.Component {
                     size="small"
                     className={style.button}
                     startIcon={<SaveIcon />}
-                    onClick={this.handleClick.bind(this)}
+                    onClick={this.handleClickSave.bind(this)}
             >
                     Save
+            </Button> &nbsp;
+            <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    className={style.button}
+                    onClick={this.handleClickCancel.bind(this)}
+            >
+                    Cancel
             </Button>
         </div>)
     }
 }
 
 export default RundownItemForm;
+
+

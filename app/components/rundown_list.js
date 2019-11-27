@@ -26,11 +26,11 @@ class RundownList extends React.Component {
 		}
     }
 
-    handleClick(e, rundownItemID) {
+    handleClick(e, rundownID) {
         e.preventDefault();
 
         const data = {
-            rundownId: rundownItemID
+            rundownId: rundownID
         }
 
         this.props.onClickHandler(data);
@@ -52,24 +52,25 @@ class RundownList extends React.Component {
 					{Object.values(rundowns).map((rundown) => {
 						return (
 							<div>
-								<ListItem button onClick={((e) => this.handleClick(e, 1))}>
-									<ListItemAvatar>
-									<Avatar>
-										<EventIcon />
-									</Avatar>
-									</ListItemAvatar>
-									<ListItemText primary={rundown.title} secondary={rundown.showTime} />
+								<ListItem>
+									<ListItem button onClick={((e) => this.handleClick(e, rundown.ID))}>
+										<ListItemAvatar>
+										<Avatar>
+											<EventIcon />
+										</Avatar>
+										</ListItemAvatar>
+										<ListItemText primary={rundown.title} secondary={rundown.showTime} />
+									</ListItem>
+									<Button
+										variant="contained"
+										color="primary"
+										size="small"
+										startIcon={<DeleteIcon />}
+										onClick={() => this.handleDeleteClick(rundown)}
+									>
+											Delete
+									</Button>
 								</ListItem>
-								
-								<Button
-									variant="contained"
-									color="primary"
-									size="small"
-									startIcon={<DeleteIcon />}
-									onClick={() => this.handleDeleteClick(rundown)}
-								>
-										Delete
-								</Button>
 							</div>
 						)
 					})}

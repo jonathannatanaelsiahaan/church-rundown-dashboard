@@ -13,6 +13,16 @@ class RundownUsecase {
         })
     }
 
+    static update(rundownData) {
+        RundownRequest.update(rundownData, (result) => {
+            if(result.status == 200) {
+                const rundown = JSON.parse(result.data)
+                const updateRundownAction = RundownAction.update([rundown])
+                Store.dispatch(updateRundownAction)
+            }
+        })
+    }
+
     static fetchAll() {
         const organizerId = JSON.parse(sessionStorage.getItem('data')).organizer.ID
         RundownRequest.getByOrganizerId(organizerId, result => {

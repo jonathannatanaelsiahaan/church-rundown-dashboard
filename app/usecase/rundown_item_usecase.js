@@ -13,10 +13,33 @@ class RundownItemUsecase {
         })
     }
 
-    static fetchAll() {
+    static update(rundownItemData) {
+        RundownItemRequest.update(rundownItemData, (result) => {
+            if(result.status == 200) {
+                const rundownItem = JSON.parse(result.data)
+                const updateRundownItemAction = RundownItemAction.update([rundownItem])
+                Store.dispatch(updateRundownItemAction)
+            }
+        })
+    }
+
+    static fetchAll(rundownId) {
+        RundownItemRequest.getByRundownId(rundownId, result => {
+            if(result.status == 200) {
+                const rundownItem = JSON.parse(result.data)
+                const createRundownItemAction = RundownItemAction.create(rundownItem)
+                Store.dispatch(createRundownItemAction)
+            }
+        })
     }
 
     static delete(rundownItem) {
+        RundownItemRequest.delete(rundownItem.ID, result => {
+            if(result.status == 200) {
+                const removeRundownItemAction = RundownItemAction.destroy([rundownItem])
+                Store.dispatch(removeRundownItemAction)
+            }
+        })
     }
 }
 

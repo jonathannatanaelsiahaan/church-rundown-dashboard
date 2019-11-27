@@ -44,7 +44,7 @@ class RundownItemToolbar extends React.Component {
                     horizontal: 'center',
                     }}
                 >
-                    <RundownItemForm/>
+                    <RundownItemForm rundownId={this.props.rundownId} action="CREATE" triggerHide={this.handleClosePopup.bind(this)}/>
                 </Popover>
             </div>
         )

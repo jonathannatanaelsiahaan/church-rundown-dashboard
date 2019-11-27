@@ -15,17 +15,14 @@ class ProtocolReducer {
     for (const key in table) {
       let exist = false;
       for (const i in state) {
-        if (state[i].primaryKey === table[key].primaryKey) {
+        if (state[i].ID === table[key].ID) {
           exist = true;
           break;
         }
       }
 
       if (exist) {
-        const protocol = new table[key].constructor(state[key]);
-        protocol.updateProps(table[key]);
-
-        updatedState[key] = protocol;
+        updatedState[key] = table[key]
       }
     }
 
