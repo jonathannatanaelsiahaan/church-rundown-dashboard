@@ -9,6 +9,22 @@ import RundownProtocol from "protocols/rundown_protocol"
 import TextField from '@material-ui/core/TextField';
 
 class RundownForm extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        if(this.props.action == "EDIT") {
+            var splitedShowTime = this.props.rundown.showTime.split(" ");
+            var splitedEndTime = this.props.rundown.endTime.split(" ");
+
+            document.querySelector("#title").value = this.props.rundown.title;
+            document.querySelector("#subtitle").value = this.props.rundown.subtitle;
+            document.querySelector("#showTime").value = splitedShowTime[0] + "T" + splitedShowTime[1];
+            document.querySelector("#endTime").value = splitedEndTime[0] + "T" + splitedEndTime[1];
+        }
+    }
+
     handleClick() {
         const titleDom = document.querySelector("#title")
         const subtitleDom = document.querySelector("#subtitle")
@@ -22,7 +38,19 @@ class RundownForm extends React.Component {
             endTime: new Date(endTimeDom.value).toISOString()
         })
         
-        RundownUsecase.create(rundown.toJson())
+        if(this.props.action == "EDIT") {
+            const rundownData = rundown.toJson();
+            rundownData.ID = this.props.rundown.ID;
+            RundownUsecase.update(rundownData)
+
+            return
+        } 
+
+        if(this.props.action == "CREATE") {
+            RundownUsecase.create(rundown.toJson())
+
+            return
+        }
     }
 
     render() {

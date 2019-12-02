@@ -4,9 +4,9 @@ class RundownProtocol {
       this._id = element.ID;
       this._title = element.title || element.Title;
       this._subtitle = element.subtitle || element.Subtitle;
-      this._showTime = element.showTime;
-      this._endTime = element.endTime;
-      this._organizerId = element.organizerID;
+      this._showTime = element.showTime || element.ShowTime;
+      this._endTime = element.endTime || element.EndTime;
+      this._organizerId = element.organizerID || element.OrganizerID;
     }
 
     get primaryKey() {
@@ -41,6 +41,32 @@ class RundownProtocol {
       return this._organizerId;
     }
 
+    convertToDisplayedDate(time) {
+      const date = new Date(time);
+      var displayedDate = date.getDate()
+      var displayedMonth = date.getMonth()
+      var displayedHours = date.getHours()
+      var displayedMinutes = date.getMinutes()
+
+      if(displayedDate < 10) {
+        displayedDate = "0" + displayedDate;
+      }
+
+      if(displayedMonth < 10) {
+        displayedMonth = "0" + displayedMonth;
+      }
+
+      if(displayedHours < 10) {
+        displayedHours = "0" + displayedHours;
+      }
+
+      if(displayedMinutes < 10) {
+        displayedMinutes = "0" + displayedMinutes;
+      }
+
+      return date.getFullYear() + "-" + displayedMonth + "-" + displayedDate + " " + displayedHours + ":" + displayedMinutes
+    }
+
     toJson() {
       return {
         ID: this.id,
@@ -48,6 +74,17 @@ class RundownProtocol {
         subtitle: this.subtitle,
         showTime: this.showTime,
         endTime: this.endTime,
+        organizerID: this.organizerId
+      }
+    }
+
+    toJsonView() {
+      return {
+        ID: this.id,
+        title: this.title,
+        subtitle: this.subtitle,
+        showTime: this.convertToDisplayedDate(this.showTime),
+        endTime: this.convertToDisplayedDate(this.endTime),
         organizerID: this.organizerId
       }
     }

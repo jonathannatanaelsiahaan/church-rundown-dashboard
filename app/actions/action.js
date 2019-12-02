@@ -3,7 +3,7 @@ class Action {
       const protocol = new Klass(element);
 
       if (typeof protocol.primaryKey !== "undefined") {
-        return { [protocol.primaryKey]: protocol.toJson() };
+        return { [protocol.primaryKey]: protocol.toJsonView() };
       }
 
       return {};

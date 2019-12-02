@@ -8,12 +8,11 @@ import Avatar from '@material-ui/core/Avatar';
 import EventIcon from '@material-ui/icons/Event';
 
 import style from "components/css/rundown_list.css";
-import RundownToolbar from "components/rundown_toolbar";
-
 import RundownUsecase from "usecase/rundown_usecase"
-
-import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
+import AddIcon from '@material-ui/icons/Add';
+import RundownForm from "components/rundown_form";
 
 class RundownList extends React.Component {
     constructor(props) {
@@ -22,7 +21,9 @@ class RundownList extends React.Component {
 		RundownUsecase.fetchAll()
 
 		this.state = {
-			rundowns: []
+			rundowns: [],
+			selectedEditRundown: {},
+            isPopupOpen: false
 		}
     }
 
@@ -40,8 +41,30 @@ class RundownList extends React.Component {
 		RundownUsecase.delete(rundown)
 	}
 
+	handleEditClick(rundown) {
+		this.setState({
+			selectedEditRundown: rundown,
+			action: "EDIT",
+			isPopupOpen: true
+		})
+	}
+
+    handleCreateClick() {
+        this.setState({
+			isPopupOpen: true,
+			action: "CREATE"
+        })
+    }
+
+    handleClosePopup() {
+        this.setState({
+            isPopupOpen: false
+        })
+	}
+
 	render() {
 		const rundowns = this.props.rundowns;
+        const isPopupOpen = this.state.isPopupOpen;
 		return (
 			<div>
 				<List 
@@ -65,17 +88,43 @@ class RundownList extends React.Component {
 										variant="contained"
 										color="primary"
 										size="small"
-										startIcon={<DeleteIcon />}
 										onClick={() => this.handleDeleteClick(rundown)}
 									>
 											Delete
+									</Button>
+									&nbsp;
+									<Button
+										variant="contained"
+										color="primary"
+										size="small"
+										onClick={(() => this.handleEditClick(rundown)).bind(this)}
+									>
+											Edit
 									</Button>
 								</ListItem>
 							</div>
 						)
 					})}
 				</List>
-				<RundownToolbar createButtonLabel="Create New Rundown" />
+				<div>
+					<Button aria-label="Create" onClick={this.handleCreateClick.bind(this)}>
+						<AddIcon /> "Create New Rundown"
+					</Button>
+					<Popover
+						open={isPopupOpen}
+						onClose={this.handleClosePopup.bind(this)}
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'center',
+						}}
+						transformOrigin={{
+							vertical: 'top',
+							horizontal: 'center',
+						}}
+					>
+						<RundownForm rundown={this.state.selectedEditRundown} action={this.state.action} />
+					</Popover>
+				</div>
 			</div>
 		);
 	}

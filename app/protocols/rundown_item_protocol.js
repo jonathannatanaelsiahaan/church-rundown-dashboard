@@ -41,6 +41,16 @@ class RundownItemProtocol {
         rundownId: this.rundownId
       }
     }
+
+    toJsonView() {
+      return {
+        ID: this.id,
+        title: this.title,
+        subtitle: this.subtitle,
+        text: this.text,
+        rundownId: this.rundownId
+      }
+    }
 }
   
 export default RundownItemProtocol;

@@ -53,7 +53,6 @@ class RundownItem extends React.Component {
                         variant="contained"
                         color="primary"
                         size="small"
-                        startIcon={<DeleteIcon />}
                         onClick={this.handleDeleteClick.bind(this)}
                     >
                             Delete
