@@ -42,12 +42,14 @@ class RundownForm extends React.Component {
             const rundownData = rundown.toJson();
             rundownData.ID = this.props.rundown.ID;
             RundownUsecase.update(rundownData)
+            this.props.close();
 
             return
         } 
 
         if(this.props.action == "CREATE") {
             RundownUsecase.create(rundown.toJson())
+            this.props.close();
 
             return
         }

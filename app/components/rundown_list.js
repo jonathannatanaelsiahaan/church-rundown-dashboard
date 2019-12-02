@@ -108,7 +108,7 @@ class RundownList extends React.Component {
 				</List>
 				<div>
 					<Button aria-label="Create" onClick={this.handleCreateClick.bind(this)}>
-						<AddIcon /> "Create New Rundown"
+						<AddIcon /> Create New Rundown
 					</Button>
 					<Popover
 						open={isPopupOpen}
@@ -122,7 +122,7 @@ class RundownList extends React.Component {
 							horizontal: 'center',
 						}}
 					>
-						<RundownForm rundown={this.state.selectedEditRundown} action={this.state.action} />
+						<RundownForm rundown={this.state.selectedEditRundown} action={this.state.action} close={this.handleClosePopup.bind(this)}/>
 					</Popover>
 				</div>
 			</div>
