@@ -8,6 +8,8 @@ import RundownUsecase from "usecase/rundown_usecase"
 import RundownProtocol from "protocols/rundown_protocol"
 import TextField from '@material-ui/core/TextField';
 
+import DateUtil from "utils/date_util";
+
 class RundownForm extends React.Component {
     constructor(props) {
         super(props)
@@ -85,7 +87,7 @@ class RundownForm extends React.Component {
                 id="showTime"
                 label="Rundown Show Time"
                 type="datetime-local"
-                defaultValue="2019-05-24T10:30"
+                defaultValue={DateUtil.convertToDisplayedDateWithISOFormat(new Date())}
                 InputLabelProps={{
                     shrink: true,
                 }}
@@ -95,7 +97,7 @@ class RundownForm extends React.Component {
                 id="endTime"
                 label="Rundown End Time"
                 type="datetime-local"
-                defaultValue="2019-05-24T12:30"
+                defaultValue={DateUtil.convertToDisplayedDateWithISOFormat(new Date())}
                 InputLabelProps={{
                     shrink: true,
                 }}

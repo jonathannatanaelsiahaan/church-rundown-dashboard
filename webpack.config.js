@@ -64,7 +64,8 @@ module.exports = {
             stores: path.resolve(__dirname, "app/stores"),
             usecase: path.resolve(__dirname, "app/usecase"),
             requests: path.resolve(__dirname, "app/requests"),
-            protocols: path.resolve(__dirname, "app/protocols")
+            protocols: path.resolve(__dirname, "app/protocols"),
+            utils: path.resolve(__dirname, "app/utils")
         }
     }
 }

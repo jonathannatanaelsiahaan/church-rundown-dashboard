@@ -1,3 +1,5 @@
+import DateUtil from "utils/date_util"
+
 class RundownProtocol {
     constructor(element = {}) {
       this._primaryKey = element.ID;
@@ -41,32 +43,6 @@ class RundownProtocol {
       return this._organizerId;
     }
 
-    convertToDisplayedDate(time) {
-      const date = new Date(time);
-      var displayedDate = date.getDate()
-      var displayedMonth = date.getMonth()
-      var displayedHours = date.getHours()
-      var displayedMinutes = date.getMinutes()
-
-      if(displayedDate < 10) {
-        displayedDate = "0" + displayedDate;
-      }
-
-      if(displayedMonth < 10) {
-        displayedMonth = "0" + displayedMonth;
-      }
-
-      if(displayedHours < 10) {
-        displayedHours = "0" + displayedHours;
-      }
-
-      if(displayedMinutes < 10) {
-        displayedMinutes = "0" + displayedMinutes;
-      }
-
-      return date.getFullYear() + "-" + displayedMonth + "-" + displayedDate + " " + displayedHours + ":" + displayedMinutes
-    }
-
     toJson() {
       return {
         ID: this.id,
@@ -83,8 +59,8 @@ class RundownProtocol {
         ID: this.id,
         title: this.title,
         subtitle: this.subtitle,
-        showTime: this.convertToDisplayedDate(this.showTime),
-        endTime: this.convertToDisplayedDate(this.endTime),
+        showTime: DateUtil.convertToDisplayedDate(new Date(this.showTime)),
+        endTime: DateUtil.convertToDisplayedDate(new Date(this.endTime)),
         organizerID: this.organizerId
       }
     }
