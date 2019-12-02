@@ -20,7 +20,6 @@ class Account extends React.Component {
 						label="Name"
 						style={{ margin: 8 }}
 						placeholder="Placeholder"
-						helperText="Full width!"
 						fullWidth
 						margin="normal"
 						InputLabelProps={{
@@ -32,7 +31,6 @@ class Account extends React.Component {
 						label="Username"
 						style={{ margin: 8 }}
 						placeholder="Placeholder"
-						helperText="Full width!"
 						fullWidth
 						margin="normal"
 						InputLabelProps={{
@@ -44,7 +42,6 @@ class Account extends React.Component {
 						label="Password"
 						style={{ margin: 8 }}
 						placeholder="Placeholder"
-						helperText="Full width!"
 						fullWidth
 						margin="normal"
 						InputLabelProps={{

@@ -1,9 +1,10 @@
-class UserProtocol {
+class AccountProtocol {
     constructor(element = {}) {
       this._primaryKey = element.ID;
       this._id = element.ID;
-      this._name = element.name | element.Name;
-      this._organizerId = element.organizerId | element.OrganizerId | element.organizerID;
+      this._username = element.username || element.Username;
+      this._password = element.password || element.Password;
+      this._userId = element.userId || element.UserId || element.UserID;
     }
 
     get primaryKey() {
@@ -13,9 +14,17 @@ class UserProtocol {
     get id() {
       return this._id;
     }
-    
-    get name() {
-      return this._name;
+
+    get username() {
+      return this._username;
+    }
+
+    get password() {
+      return this._password;
+    }
+
+    get userId() {
+      return this._userId;
     }
 
     get organizerId() {
@@ -29,7 +38,10 @@ class UserProtocol {
     toJson() {
       return {
         ID: this.id,
-        name: this.name,
+        title: this.title,
+        username: this.username,
+        password: this.password,
+        userId: this.userId,
         organizerID: this.organizerId
       }
     }
@@ -37,10 +49,13 @@ class UserProtocol {
     toJsonView() {
       return {
         ID: this.id,
-        name: this.name,
+        title: this.title,
+        username: this.username,
+        password: this.password,
+        userId: this.userId,
         organizerID: this.organizerId
       }
     }
-  }
+}
   
-  export default UserProtocol;
+export default AccountProtocol;
