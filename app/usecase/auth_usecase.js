@@ -55,6 +55,12 @@ class AuthUsecase {
             }
         });
     }
+
+    static logout() {
+        sessionStorage.removeItem('data');
+
+        window.location.replace("/login");
+    }
 }
 
 export default AuthUsecase;

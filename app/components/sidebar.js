@@ -10,13 +10,12 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import Dialog from '@material-ui/core/Dialog';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -26,14 +25,13 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import AccountMenu from "components/account"
 import RundownMenu from "components/rundown_menu"
+import LogoutForm from './logout_form';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
         Church Rundown
-      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -125,6 +123,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [menu, setOpenedMenu] = React.useState("Rundown");
+  const [isPopupOpened, setIsPopUpOpened] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -138,6 +137,14 @@ export default function Dashboard() {
 
   const handleRundownMenuOpen =  () => {
       setOpenedMenu("Rundown");
+  }
+
+  const handleClosePopup = () => {
+    setIsPopUpOpened(false);
+  }
+
+  const handleOpenPopup = () => {
+    setIsPopUpOpened(true);
   }
 
   var contentMenu = <div/>
@@ -168,9 +175,15 @@ export default function Dashboard() {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+            <ExitToAppIcon onClick={handleOpenPopup.bind(this)}/>
+            <Dialog
+              open={isPopupOpened}
+              onClose={handleClosePopup.bind(this)}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <LogoutForm hide={handleClosePopup.bind(this)}/>
+            </Dialog>
           </IconButton>
         </Toolbar>
       </AppBar>

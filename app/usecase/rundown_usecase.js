@@ -9,6 +9,8 @@ class RundownUsecase {
                 const rundown = JSON.parse(result.data)
                 const createRundownAction = RundownAction.create([rundown])
                 Store.dispatch(createRundownAction)
+            } else if(result.status == 401) {
+                window.location.replace("/login");
             }
         })
     }
@@ -19,6 +21,8 @@ class RundownUsecase {
                 const rundown = JSON.parse(result.data)
                 const updateRundownAction = RundownAction.update([rundown])
                 Store.dispatch(updateRundownAction)
+            } else if(result.status == 401) {
+                window.location.replace("/login");
             }
         })
     }
@@ -39,6 +43,8 @@ class RundownUsecase {
             if(result.status == 200) {
                 const removeRundownAction = RundownAction.destroy([rundown])
                 Store.dispatch(removeRundownAction)
+            } else if(result.status == 401) {
+                window.location.replace("/login");
             }
         })
     }

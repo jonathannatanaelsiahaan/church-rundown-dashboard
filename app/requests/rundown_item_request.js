@@ -9,7 +9,7 @@ class RundownItemRequest {
         })
     }
 
-    static update(rundownItem, response) {
+    static update(rundownItem, callback) {
         fetch('http://localhost:3000/admin/rundown_item', {
             method: 'put',
             headers: new Headers({
@@ -17,13 +17,18 @@ class RundownItemRequest {
             }),
             body: JSON.stringify(rundownItem)
         }).then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            response(data)
+            if(response.status == 200) {
+                const jsonResponse = response.json();
+                return jsonResponse.then(data => {
+                    callback(data);
+                });
+            } else {
+                callback({ status: response.status });
+            } 
         })
     }
 
-    static create(rundownItem, response) {
+    static create(rundownItem, callback) {
         fetch('http://localhost:3000/admin/rundown_item', {
             method: 'post',
             headers: new Headers({
@@ -31,22 +36,32 @@ class RundownItemRequest {
             }),
             body: JSON.stringify(rundownItem)
         }).then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            response(data)
+            if(response.status == 200) {
+                const jsonResponse = response.json();
+                return jsonResponse.then(data => {
+                    callback(data);
+                });
+            } else {
+                callback({ status: response.status });
+            } 
         })
     }
 
-    static delete(rundownItemId, response) {
+    static delete(rundownItemId, callback) {
         fetch('http://localhost:3000/admin/rundown_item/' + rundownItemId, {
             method: 'delete',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(sessionStorage.getItem('data')).token
             }),
         }).then(function(response) {
-            return response.json()
-        }).then(function(data) {
-            response(data)
+            if(response.status == 200) {
+                const jsonResponse = response.json();
+                return jsonResponse.then(data => {
+                    callback(data);
+                });
+            } else {
+                callback({ status: response.status });
+            } 
         })
     }
 }
