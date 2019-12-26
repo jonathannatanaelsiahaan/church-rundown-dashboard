@@ -7,8 +7,9 @@ import CreateIcon from '@material-ui/icons/Create';
 import RundownItemForm from "components/rundown_item_form";
 import RundownItemUsecase from "usecase/rundown_item_usecase";
 
-import DeleteIcon from '@material-ui/icons/Delete';
+import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
+import DeleteForm from "components/delete_form";
 
 class RundownItem extends React.Component {
     constructor(props) {
@@ -37,10 +38,30 @@ class RundownItem extends React.Component {
         RundownItemUsecase.delete(this.props.data);
     }
 
+    handleOpenDeletePopup() {
+        this.setState({
+            isDeletePopupOpened: true
+        });
+    }
+
+    handleCloseDeletePopup() {
+        this.setState({
+            isDeletePopupOpened: false
+        });
+    }
+
 	render() {
         if(!this.state.showEditMenu) {
             return (
                 <ListItem>
+                    <Dialog
+                        open={this.state.isDeletePopupOpened}
+                        onClose={this.handleCloseDeletePopup.bind(this)}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DeleteForm hide={this.handleCloseDeletePopup.bind(this)} delete={this.handleDeleteClick.bind(this)} itemName={this.props.data.title}/>
+                    </Dialog>
                     <ListItem button onClick={((e) => this.handleClickOnRundownItem(e)).bind(this)}>
                         <ListItemAvatar>
                         <Avatar>
@@ -53,7 +74,7 @@ class RundownItem extends React.Component {
                         variant="contained"
                         color="primary"
                         size="small"
-                        onClick={this.handleDeleteClick.bind(this)}
+                        onClick={this.handleOpenDeletePopup.bind(this)}
                     >
                             Delete
                     </Button>
