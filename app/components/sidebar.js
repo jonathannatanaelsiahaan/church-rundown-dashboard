@@ -26,17 +26,6 @@ import AccountMenu from "components/account"
 import RundownMenu from "components/rundown_menu"
 import LogoutForm from './logout_form';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-        Church Rundown 
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({

@@ -114,7 +114,7 @@ class RundownList extends React.Component {
 										variant="contained"
 										color="primary"
 										size="small"
-										onClick={() => this.handleOpenDeletePopup(rundown).bind(this)}
+										onClick={(() => this.handleOpenDeletePopup(rundown)).bind(this)}
 									>
 											Delete
 									</Button>
