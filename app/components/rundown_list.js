@@ -10,9 +10,10 @@ import EventIcon from '@material-ui/icons/Event';
 import style from "components/css/rundown_list.css";
 import RundownUsecase from "usecase/rundown_usecase"
 import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
+import Dialog from '@material-ui/core/Dialog';
 import AddIcon from '@material-ui/icons/Add';
 import RundownForm from "components/rundown_form";
+import DeleteForm from "components/delete_form";
 
 class RundownList extends React.Component {
     constructor(props) {
@@ -23,7 +24,11 @@ class RundownList extends React.Component {
 		this.state = {
 			rundowns: [],
 			selectedEditRundown: {},
-            isPopupOpen: false
+			isPopupOpen: false,
+			isDeletePopupOpened: false,
+			selectedRundown: {
+				title: ""
+			}
 		}
     }
 
@@ -62,11 +67,32 @@ class RundownList extends React.Component {
         })
 	}
 
+	handleCloseDeletePopup() {
+		this.setState({
+			isDeletePopupOpened: false
+		})
+	}
+
+	handleOpenDeletePopup(rundown) {
+		this.setState({
+			selectedRundown: rundown,
+			isDeletePopupOpened: true
+		})
+	}
+
 	render() {
 		const rundowns = this.props.rundowns;
         const isPopupOpen = this.state.isPopupOpen;
 		return (
 			<div>
+				<Dialog
+					open={this.state.isDeletePopupOpened}
+					onClose={this.handleCloseDeletePopup.bind(this)}
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DeleteForm hide={this.handleCloseDeletePopup.bind(this)} delete={() => this.handleDeleteClick(this.state.selectedRundown)} itemName={this.state.selectedRundown.title}/>
+				</Dialog>
 				<List 
 					component="nav"
 					aria-labelledby="nested-list-subheader"
@@ -88,7 +114,7 @@ class RundownList extends React.Component {
 										variant="contained"
 										color="primary"
 										size="small"
-										onClick={() => this.handleDeleteClick(rundown)}
+										onClick={() => this.handleOpenDeletePopup(rundown).bind(this)}
 									>
 											Delete
 									</Button>
@@ -110,20 +136,14 @@ class RundownList extends React.Component {
 					<Button aria-label="Create" onClick={this.handleCreateClick.bind(this)}>
 						<AddIcon /> Create New Rundown
 					</Button>
-					<Popover
+					<Dialog
 						open={isPopupOpen}
 						onClose={this.handleClosePopup.bind(this)}
-						anchorOrigin={{
-							vertical: 'bottom',
-							horizontal: 'center',
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
 					>
 						<RundownForm rundown={this.state.selectedEditRundown} action={this.state.action} close={this.handleClosePopup.bind(this)}/>
-					</Popover>
+					</Dialog>
 				</div>
 			</div>
 		);

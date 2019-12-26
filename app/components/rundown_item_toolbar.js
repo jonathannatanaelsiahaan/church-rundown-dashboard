@@ -1,5 +1,5 @@
 import React from "react";
-import Popover from '@material-ui/core/Popover';
+import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RundownItemForm from "components/rundown_item_form";
@@ -32,20 +32,14 @@ class RundownItemToolbar extends React.Component {
                 <Button aria-label="Create" onClick={this.handleClickOnCreateRundownItem.bind(this)}>
                     <AddIcon /> {this.props.createButtonLabel}
                 </Button>
-                <Popover
+                <Dialog
                     open={isPopupOpen}
                     onClose={this.handleClosePopup.bind(this)}
-                    anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                    }}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                 >
                     <RundownItemForm rundownId={this.props.rundownId} action="CREATE" triggerHide={this.handleClosePopup.bind(this)}/>
-                </Popover>
+                </Dialog>
             </div>
         )
 	}
