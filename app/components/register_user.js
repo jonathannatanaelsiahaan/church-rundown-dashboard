@@ -46,7 +46,7 @@ class Register extends React.Component {
                         </div>
                     </div>
                     <div className={style.floatingLabel}>
-                        <input placeholder="Password" type="text" name="password" id="password" autocomplete="off" />
+                        <input placeholder="Password" type="password" name="password" id="password" autocomplete="off" />
                         <div className={style.icon}>
                         </div>
                     </div>

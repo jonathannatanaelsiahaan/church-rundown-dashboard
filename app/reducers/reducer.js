@@ -15,7 +15,8 @@ class Reducer {
     rundowns: ProtocolReducer.build("rundowns"),
     rundownItems: ProtocolReducer.build("rundownItems"),
     accounts: ProtocolReducer.build("accounts"),
-    users: ProtocolReducer.build("users")
+    users: ProtocolReducer.build("users"),
+    organizers: ProtocolReducer.build("organizers")
   });
 
 }

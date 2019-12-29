@@ -5,7 +5,7 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
-        if(sessionStorage.getItem("data") == null) {
+        if(localStorage.getItem("data") == null) {
             window.location.replace("/login");
         }
     }

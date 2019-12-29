@@ -15,10 +15,16 @@ class AuthUsecase {
 
                 const storedSession = {
                     organizer: organizer,
-                    token: token
+                    token: token,
+                    account: {
+                        id: account.ID
+                    },
+                    user: {
+                        id: user.ID
+                    }
                 }
 
-                sessionStorage.setItem('data', JSON.stringify(storedSession))
+                localStorage.setItem('data', JSON.stringify(storedSession))
 
                 const createUserAction = UserAction.create([user]);
                 const createAccountAction = AccountAction.create([account]);
@@ -41,10 +47,16 @@ class AuthUsecase {
 
                 const storedSession = {
                     organizer: organizer,
-                    token: token
+                    token: token,
+                    account: {
+                        id: account.ID
+                    },
+                    user: {
+                        id: user.ID
+                    }
                 }
 
-                sessionStorage.setItem('data', JSON.stringify(storedSession))
+                localStorage.setItem('data', JSON.stringify(storedSession))
 
                 const createUserAction = UserAction.create([user]);
                 const createAccountAction = AccountAction.create([account]);
@@ -57,7 +69,7 @@ class AuthUsecase {
     }
 
     static logout() {
-        sessionStorage.removeItem('data');
+        localStorage.removeItem('data');
 
         window.location.replace("/login");
     }

@@ -13,7 +13,7 @@ class RundownRequest {
         fetch('http://localhost:3000/admin/rundown', {
             method: 'put',
             headers: new Headers({
-                'Authorization': 'Bearer '+ JSON.parse(sessionStorage.getItem('data')).token
+                'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token
             }),
             body: JSON.stringify(rundown)
         }).then(function(response) {
@@ -32,7 +32,7 @@ class RundownRequest {
         fetch('http://localhost:3000/admin/rundown', {
             method: 'post',
             headers: new Headers({
-                'Authorization': 'Bearer '+ JSON.parse(sessionStorage.getItem('data')).token
+                'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token
             }),
             body: JSON.stringify(rundown)
         }).then(function(response) {
@@ -51,7 +51,7 @@ class RundownRequest {
         fetch('http://localhost:3000/admin/rundown/' + rundownId, {
             method: 'delete',
             headers: new Headers({
-                'Authorization': 'Bearer '+ JSON.parse(sessionStorage.getItem('data')).token
+                'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token
             }),
         }).then(function(response) {
             if(response.status == 200) {

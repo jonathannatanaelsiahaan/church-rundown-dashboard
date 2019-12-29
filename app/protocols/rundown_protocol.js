@@ -37,7 +37,7 @@ class RundownProtocol {
 
     get organizerId() {
       if(this._organizerId == undefined || typeof(this._organizerId) == "undefined") {
-        return JSON.parse(sessionStorage.getItem('data')).organizer.ID;
+        return JSON.parse(localStorage.getItem('data')).organizer.ID;
       }
       
       return this._organizerId;

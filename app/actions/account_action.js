@@ -1,18 +1,18 @@
 import ProtocolAction from "actions/protocol_action";
-import RundownProtocol from "protocols/rundown_protocol";
+import AccountProtocol from "protocols/account_protocol";
 
-class RundownAction {
+class AccountAction {
   static create(elements) {
-    return ProtocolAction.create(RundownProtocol, "rundowns", elements);
+    return ProtocolAction.create(AccountProtocol, "accounts", elements);
   }
 
   static update(elements) {
-    return ProtocolAction.update(RundownProtocol, "rundowns", elements);
+    return ProtocolAction.update(AccountProtocol, "accounts", elements);
   }
 
   static destroy(elements) {
-    return ProtocolAction.destroy(RundownProtocol, "rundowns", elements);
+    return ProtocolAction.destroy(AccountProtocol, "accounts", elements);
   }
 }
 
-export default RundownAction;
+export default AccountAction;

@@ -1,9 +1,9 @@
-class UserProtocol {
+class OrganizerProtocol {
     constructor(element = {}) {
       this._primaryKey = element.ID;
       this._id = element.ID;
       this._name = element.Name;
-      this._organizerId = element.OrganizerId;
+      this._description = element.Description;
     }
 
     get primaryKey() {
@@ -18,19 +18,15 @@ class UserProtocol {
       return this._name;
     }
 
-    get organizerId() {
-      if(this._organizerId == undefined || typeof(this._organizerId) == "undefined") {
-        return JSON.parse(localStorage.getItem('data')).organizer.ID;
-      }
-      
-      return this._organizerId;
+    get description() {
+      return this._description;
     }
 
     toJson() {
       return {
         ID: this.id,
         name: this.name,
-        organizerID: this.organizerId
+        description: this.description
       }
     }
 
@@ -38,9 +34,9 @@ class UserProtocol {
       return {
         ID: this.id,
         name: this.name,
-        organizerID: this.organizerId
+        description: this.description
       }
     }
   }
   
-  export default UserProtocol;
+  export default OrganizerProtocol;

@@ -28,7 +28,7 @@ class RundownUsecase {
     }
 
     static fetchAll() {
-        const organizerId = JSON.parse(sessionStorage.getItem('data')).organizer.ID
+        const organizerId = JSON.parse(localStorage.getItem('data')).organizer.ID
         RundownRequest.getByOrganizerId(organizerId, result => {
             if(result.status == 200) {
                 const rundown = JSON.parse(result.data)
