@@ -14,7 +14,9 @@ class AuthUsecase {
                 const token = data.token;
 
                 const storedSession = {
-                    organizer: organizer,
+                    organizer: {
+                        ID: organizer.ID
+                    },
                     token: token,
                     account: {
                         id: account.ID
@@ -46,7 +48,9 @@ class AuthUsecase {
                 const token = data.token;
 
                 const storedSession = {
-                    organizer: organizer,
+                    organizer: {
+                        ID: organizer.ID
+                    },
                     token: token,
                     account: {
                         id: account.ID

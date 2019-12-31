@@ -1,5 +1,6 @@
 import AccountRequest from "requests/account_request";
 import UserRequest from "requests/user_request";
+import AuthRequest from "requests/auth_request";
 import OrganizerRequest from "requests/organizer_request";
 
 import UserAction from "actions/user_action";
@@ -34,6 +35,27 @@ class AccountUsecase {
                 const organizer = JSON.parse(result.data);
                 const createOrganizerAction = OrganizerAction.create([organizer]);
                 Store.dispatch(createOrganizerAction);
+            }
+        })
+    }
+
+    static updateData(authData, callback) {
+        AuthRequest.update(authData, response => {
+            if(response.status == 200) {
+                const data = JSON.parse(response.data);
+                const account = data.account;
+                const user = data.user;
+                const organizer = data.organizer;
+
+                const updateUserAction = UserAction.update([user]);
+                const updateAccountAction = AccountAction.update([account]);
+                const updateOrganizerAction = OrganizerAction.update([organizer]);
+
+                Store.dispatch(updateUserAction);
+                Store.dispatch(updateAccountAction);
+                Store.dispatch(updateOrganizerAction);
+                
+                callback();
             }
         })
     }

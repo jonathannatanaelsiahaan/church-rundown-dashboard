@@ -3,14 +3,72 @@ import { connect } from "react-redux";
 import style from "components/css/account.css"
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
 import AccountUsecase from "usecase/account_usecase";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 class Account extends React.Component {
 	constructor(props) {
 		super(props);
 
 		AccountUsecase.fetchAll();
+
+		this.state = {
+			showSuccessNotification: false
+		}
+	}
+
+	handleUpdate(event) {
+		event.preventDefault();
+
+		const globalData = JSON.parse(localStorage.getItem("data"));
+
+		const organizerId = globalData.organizer.ID;
+		const organizerName = document.querySelector("#organizerName").value;
+		const organizerDesc = document.querySelector("#organizerDesc").value;
+
+		const userId = globalData.user.id;
+		const name = document.querySelector("#name").value;
+
+		const accountId = globalData.account.id;
+		const username = document.querySelector("#username").value;
+		const password = document.querySelector("#password").value;
+
+		const data = {
+			user: {
+				id: userId,
+				name: name
+			},
+			account: {
+				id: accountId,
+				username: username,
+				password: password
+			},
+			organizer: {
+				id: organizerId,
+				name: organizerName,
+				description: organizerDesc
+			}
+		};
+
+		AccountUsecase.updateData(data, () => {
+			this.setState({
+				showSuccessNotification: true
+			})
+
+			document.querySelector("#organizerName").value = "";
+			document.querySelector("#organizerDesc").value = "";
+			document.querySelector("#name").value = "";
+			document.querySelector("#username").value = "";
+			document.querySelector("#password").value = "";
+		});
+	}
+
+	handleCloseNotification() {
+		this.setState({
+			showSuccessNotification: false
+		})
 	}
 
 	render() {
@@ -47,8 +105,31 @@ class Account extends React.Component {
 		return (
             <div className={style.container}>
 				<div>
+					<Snackbar
+						anchorOrigin={{
+							vertical: 'top',
+							horizontal: 'top',
+						}}
+						open={this.state.showSuccessNotification}
+						autoHideDuration={6000}
+						onClose={this.handleCloseNotification.bind(this)}
+						ContentProps={{
+							'aria-describedby': 'message-id',
+						}}
+						message={<span id="message-id">Update Success!!</span>}
+						action={[
+							<IconButton
+								key="close"
+								aria-label="close"
+								color="inherit"
+								onClick={this.handleCloseNotification.bind(this)}
+							>
+								<CloseIcon />
+							</IconButton>,
+						]}
+					/>
 					<TextField
-						id="standard-full-width"
+						id="organizerName"
 						label="Organizer Name"
 						style={{ margin: 8 }}
 						placeholder={organizer.name}
@@ -59,7 +140,7 @@ class Account extends React.Component {
 						}}
 					/>
 					<TextField
-						id="standard-full-width"
+						id="organizerDesc"
 						label="Organizer Description"
 						style={{ margin: 8 }}
 						placeholder={organizer.description}
@@ -70,7 +151,7 @@ class Account extends React.Component {
 						}}
 					/>
 					<TextField
-						id="standard-full-width"
+						id="name"
 						label="Name"
 						style={{ margin: 8 }}
 						placeholder={user.name}
@@ -81,7 +162,7 @@ class Account extends React.Component {
 						}}
 					/>
 					<TextField
-						id="standard-full-width"
+						id="username"
 						label="Username"
 						style={{ margin: 8 }}
 						placeholder={account.username}
@@ -92,7 +173,7 @@ class Account extends React.Component {
 						}}
 					/>
 					<TextField
-						id="standard-full-width"
+						id="password"
 						label="Password"
 						type="password"
 						style={{ margin: 8 }}
@@ -104,7 +185,7 @@ class Account extends React.Component {
 						}}
 					/>
 
-					<Button variant="contained" color="primary">
+					<Button variant="contained" color="primary" onClick={this.handleUpdate.bind(this)}>
 						Update
 					</Button>
 				</div>
