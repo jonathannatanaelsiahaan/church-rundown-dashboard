@@ -25,15 +25,22 @@ class Account extends React.Component {
 		const globalData = JSON.parse(localStorage.getItem("data"));
 
 		const organizerId = globalData.organizer.ID;
-		const organizerName = document.querySelector("#organizerName").value;
-		const organizerDesc = document.querySelector("#organizerDesc").value;
+
+		const organizerNameDom = document.querySelector("#organizerName");
+		const organizerDescDom = document.querySelector("#organizerDesc");
+		const nameDom = document.querySelector("#name");
+		const usernameDom = document.querySelector("#username");
+		const passwordDom = document.querySelector("#password");
+
+		const organizerName = organizerNameDom.value || organizerNameDom.placeholder;
+		const organizerDesc = organizerDescDom.value || organizerDescDom.placeholder;
 
 		const userId = globalData.user.id;
-		const name = document.querySelector("#name").value;
+		const name = nameDom.value || nameDom.placeholder;
 
 		const accountId = globalData.account.id;
-		const username = document.querySelector("#username").value;
-		const password = document.querySelector("#password").value;
+		const username = usernameDom.value || usernameDom.placeholder;
+		const password = passwordDom.value || passwordDom.placeholder;
 
 		const data = {
 			user: {
