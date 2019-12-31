@@ -56,6 +56,8 @@ class AccountUsecase {
                 Store.dispatch(updateOrganizerAction);
                 
                 callback();
+            } else if(response.status == 500) {
+                callback(response.errorMessage)
             }
         })
     }

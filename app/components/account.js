@@ -59,11 +59,19 @@ class Account extends React.Component {
 			}
 		};
 
-		AccountUsecase.updateData(data, () => {
-			this.setState({
-				showSuccessNotification: true
-			})
-
+		AccountUsecase.updateData(data, (error) => {
+			if(error != null) {
+				this.setState({
+					showSuccessNotification: true,
+					notificationMessage: error
+				})
+			} else {
+				this.setState({
+					showSuccessNotification: true,
+					notificationMessage: "Update Success!!"
+				})	
+			}
+			
 			document.querySelector("#organizerName").value = "";
 			document.querySelector("#organizerDesc").value = "";
 			document.querySelector("#name").value = "";
@@ -123,7 +131,7 @@ class Account extends React.Component {
 						ContentProps={{
 							'aria-describedby': 'message-id',
 						}}
-						message={<span id="message-id">Update Success!!</span>}
+						message={<span id="message-id">{this.state.notificationMessage}</span>}
 						action={[
 							<IconButton
 								key="close"
