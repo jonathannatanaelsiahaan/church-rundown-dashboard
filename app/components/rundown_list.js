@@ -108,7 +108,7 @@ class RundownList extends React.Component {
 											<EventIcon />
 										</Avatar>
 										</ListItemAvatar>
-										<ListItemText primary={rundown.title} secondary={rundown.showTime} />
+										<ListItemText primary={rundown.title} secondary={rundown.showTime + " - " + rundown.endTime} />
 									</ListItem>
 									<Button
 										variant="contained"

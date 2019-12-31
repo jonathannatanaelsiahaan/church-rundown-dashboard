@@ -1,7 +1,7 @@
 class DateUtil {
     static convertToDisplayedDate(date) {
       var displayedDate = date.getDate()
-      var displayedMonth = date.getMonth()
+      var displayedMonth = date.getMonth() + 1;
       var displayedHours = date.getHours()
       var displayedMinutes = date.getMinutes()
 
