@@ -39,9 +39,7 @@ class AuthUsecase {
 
                 if(errorMessage.includes("Duplicate entry") && errorMessage.includes("username")) {
                     errorMessage = "Sorry, the username you choose is already taken";
-                }
-
-                if(errorMessage.includes("Duplicate entry") && errorMessage.includes("name")) {
+                } else if(errorMessage.includes("Duplicate entry") && errorMessage.includes("name")) {
                     errorMessage = "Sorry, the organization name you choose is already taken";
                 }
 
@@ -50,7 +48,7 @@ class AuthUsecase {
         });
     }
 
-    login(auth) {
+    login(auth, callback) {
         AuthRequest.login(auth, (response) => {
             if(response.status == 200) {
                 const data = JSON.parse(response.data);
@@ -80,6 +78,10 @@ class AuthUsecase {
                 Store.dispatch(createAccountAction);
 
                 window.location.replace("/dashboard");
+            } else {
+                var errorMessage = response.errorMessage;
+
+                callback(errorMessage);
             }
         });
     }

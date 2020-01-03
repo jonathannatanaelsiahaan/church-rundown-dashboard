@@ -42,7 +42,7 @@ class Register extends React.Component {
         const authUsecase = new AuthUsecase();
         authUsecase.register(authData, (errorMessage) => {
             if(errorMessage != null) {
-                this.handleOpenNotification(errorMessage);
+                this.handleOpenNotification(errorMessage)
             }
         });
     }
