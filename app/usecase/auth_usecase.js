@@ -4,7 +4,7 @@ import AccountAction from "actions/account_action";
 import Store from "stores/store";
 
 class AuthUsecase {
-    register(auth){
+    register(auth, callback){
         AuthRequest.register(auth, (response) => {
             if(response.status == 200) {
                 const data = JSON.parse(response.data);
@@ -34,6 +34,18 @@ class AuthUsecase {
                 Store.dispatch(createAccountAction);
 
                 window.location.replace("/dashboard");
+            } else {
+                var errorMessage = response.errorMessage;
+
+                if(errorMessage.includes("Duplicate entry") && errorMessage.includes("username")) {
+                    errorMessage = "Sorry, the username you choose is already taken";
+                }
+
+                if(errorMessage.includes("Duplicate entry") && errorMessage.includes("name")) {
+                    errorMessage = "Sorry, the organization name you choose is already taken";
+                }
+
+                callback(errorMessage);
             }
         });
     }
