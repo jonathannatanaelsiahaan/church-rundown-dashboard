@@ -7,6 +7,7 @@ import {
 import Register from "components/register";
 import Login from "components/login";
 import Dashboard from "components/dashboard";
+import Home from "components/home";
 
 class Main extends React.Component {
 	render() {
@@ -21,6 +22,9 @@ class Main extends React.Component {
 					</Route>
 					<Route path="/dashboard">
 						<Dashboard />
+					</Route>
+					<Route path="/">
+						<Home />
 					</Route>
 				</Switch>
 			</Router>
