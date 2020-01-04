@@ -10,7 +10,7 @@ class Home extends React.Component {
             window.location.replace("/dashboard");
         } else {
             window.location.replace("/login");
-        } 
+        }
     }
 }
 
