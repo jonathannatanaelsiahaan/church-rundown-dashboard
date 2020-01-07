@@ -91,10 +91,8 @@ class Login extends React.Component {
                     </div>
                     <button type="submit" onClick={this.onClickHandler.bind(this)} className={style.login}>Log in</button>
                     <p>No have account?</p>
-                    <p>Create your account for free</p>
-                    <a href="/register">
-                        <button className={style.register}>Register</button>
-                    </a>
+                    <p>Create your account for free</p><br/>
+                    <p><a href="/register" className={style.register}>Register</a></p>
                     </form>
                 </div>
             </div>
