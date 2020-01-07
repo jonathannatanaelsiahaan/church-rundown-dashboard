@@ -104,6 +104,34 @@ a.discrete:hover {
     transform:  scale(.99);
 }
 
+.register {
+  -webkit-appearance:  none; 
+  width:  auto;
+  text-align:  center; 
+  padding:  13px 30px;
+  background-color: transparent; 
+  color: #333; 
+  font-size:  11px;
+  margin-left:  auto; 
+  font-weight:  300; 
+  box-shadow:  0px 2px 6px -1px rgba(0,0,0,.13); 
+  border:  none;
+  transition:  all .3s ease; 
+  outline: 0;
+  margin-top: 10px;
+  border: 1px solid rgb(182,157,230);
+  border-radius:  24px; 
+}
+
+.register:hover {
+    transform:  translateY(-3px);
+    box-shadow:  0 2px 6px -1px rgba(rgb(182,157,230), .65);
+}
+
+.register:active {
+    transform:  scale(.99);
+}
+
 input {
   font-size:  16px; 
   padding:  20px 0px; 
