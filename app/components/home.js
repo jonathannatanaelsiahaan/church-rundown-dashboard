@@ -9,7 +9,7 @@ class Home extends React.Component {
         if(session != null) {
             window.location.replace("/dashboard");
         } else {
-            window.location.replace("/login");
+            window.location.replace("/home");
         }
     }
 }
