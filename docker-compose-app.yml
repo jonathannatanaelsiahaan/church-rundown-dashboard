@@ -1,0 +1,13 @@
+version: '2.0'
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    environment:
+      - url=https://acaragereja.com
+      - VIRTUAL_HOST=acaragereja.com
+      - LETSENCRYPT_HOST=acaragereja.com
+      - LETSENCRYPT_EMAIL=jonathannael12@gmail.com
