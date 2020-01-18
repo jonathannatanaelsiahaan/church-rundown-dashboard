@@ -2,3 +2,4 @@ node_modules/
 opt/
 vhost.d/
 conf.d/
+public/dist/

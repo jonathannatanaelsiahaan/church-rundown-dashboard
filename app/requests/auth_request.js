@@ -1,6 +1,6 @@
 class AuthRequest {
     static register(auth, result){
-        fetch('http://localhost:3000/public/auth/register', {
+        fetch(API_URL + '/public/auth/register', {
             method: 'post',
             body: JSON.stringify(auth)
         }).then(function(response) {
@@ -11,7 +11,7 @@ class AuthRequest {
     }
 
     static login(auth, result) {
-        fetch('http://localhost:3000/public/auth/login', {
+        fetch(API_URL + '/public/auth/login', {
             method: 'post',
             body: JSON.stringify(auth)
         }).then(function(response) {
@@ -22,7 +22,7 @@ class AuthRequest {
     }
 
     static update(auth, result) {
-        fetch('http://localhost:3000/admin/auth/update', {
+        fetch(API_URL + '/admin/auth/update', {
             method: 'post',
             body: JSON.stringify(auth),
             headers: new Headers({

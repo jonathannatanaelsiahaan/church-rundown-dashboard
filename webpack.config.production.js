@@ -19,7 +19,8 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(true),
-            DEV: JSON.stringify(false)
+            DEV: JSON.stringify(false),
+            API_URL: JSON.stringify("https://acaragereja.com")
         })
     ],
     resolve: resolver

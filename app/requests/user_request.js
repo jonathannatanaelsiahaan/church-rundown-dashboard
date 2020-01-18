@@ -1,6 +1,6 @@
 class UserRequest {
     static getById(id, response){
-        fetch('http://localhost:3000/admin/user/' + id, {
+        fetch(API_URL + '/admin/user/' + id, {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token

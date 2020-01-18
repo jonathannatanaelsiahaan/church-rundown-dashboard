@@ -1,6 +1,6 @@
 class OrganizerRequest {
     static getById(id, response){
-        fetch('http://localhost:3000/admin/organizer/getById/' + id, {
+        fetch(API_URL + '/admin/organizer/getById/' + id, {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token

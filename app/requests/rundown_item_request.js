@@ -1,6 +1,6 @@
 class RundownItemRequest {
     static getByRundownId(rundownId, response){
-        fetch('http://localhost:3000/public/rundown_item/' + rundownId, {
+        fetch('{$API_URL}/public/rundown_item/' + rundownId, {
             method: 'get'
         }).then(function(response) {
             return response.json()
@@ -10,7 +10,7 @@ class RundownItemRequest {
     }
 
     static update(rundownItem, callback) {
-        fetch('http://localhost:3000/admin/rundown_item', {
+        fetch(API_URL + '/admin/rundown_item', {
             method: 'put',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token
@@ -29,7 +29,7 @@ class RundownItemRequest {
     }
 
     static create(rundownItem, callback) {
-        fetch('http://localhost:3000/admin/rundown_item', {
+        fetch(API_URL + '/admin/rundown_item', {
             method: 'post',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token
@@ -48,7 +48,7 @@ class RundownItemRequest {
     }
 
     static delete(rundownItemId, callback) {
-        fetch('http://localhost:3000/admin/rundown_item/' + rundownItemId, {
+        fetch(API_URL + '/admin/rundown_item/' + rundownItemId, {
             method: 'delete',
             headers: new Headers({
                 'Authorization': 'Bearer '+ JSON.parse(localStorage.getItem('data')).token

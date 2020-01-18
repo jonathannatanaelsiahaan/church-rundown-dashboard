@@ -19,7 +19,8 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             PRODUCTION: JSON.stringify(false),
-            DEV: JSON.stringify(true)
+            DEV: JSON.stringify(true),
+            API_URL: JSON.stringify("http://localhost:3000")
         })
     ],
     resolve: resolver
