@@ -163,6 +163,10 @@ server {
         location /public/ {
           proxy_pass http://api;
         }
+
+        location /admin/ {
+          proxy_pass http://api;
+        }
 }
 {{ else }}
 
