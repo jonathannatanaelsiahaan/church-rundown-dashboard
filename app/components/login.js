@@ -77,7 +77,7 @@ class Login extends React.Component {
                     <div className={style.left}>     
                     </div>
                     <form action="" className={style.logIn} autocomplete="off"> 
-                    <h4>Church Rundown Dashboard</h4>
+                    <h4>Acara Gereja Dashboard</h4>
                     <p>Welcome back! Log in to your account to create your own rundown</p>
                     <div className={style.floatingLabel}>
                         <input placeholder="Username" type="text" name="username" id="username" autocomplete="off"/>

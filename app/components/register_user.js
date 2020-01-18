@@ -33,7 +33,7 @@ class Register extends React.Component {
                     <div className={style.left}>
                     </div>
                     <form action="" className={style.logIn} autocomplete="off"> 
-                    <h4>Church Rundown Dashboard</h4>
+                    <h4>Acara Gereja Dashboard</h4>
                     <p>For The Last Step, Please Fill Your Account Data</p>
                     <div className={style.floatingLabel}>
                         <input placeholder="Name" type="text" name="name" id="name" autocomplete="off" />
