@@ -31,7 +31,9 @@
     "redux": "^4.0.1"
   },
   "scripts": {
-    "dev": "webpack --progress --config webpack.config.js",
+    "start:dev": "webpack --progress --config webpack.config.development.js",
+    "start:production": "webpack --progress --config webpack.config.production.js",
+
     "start": "webpack-dev-server",
     "build": "webpack"
   },
