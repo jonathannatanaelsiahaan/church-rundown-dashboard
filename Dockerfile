@@ -10,7 +10,7 @@ WORKDIR /app
 
 RUN yarn install
 
-RUN yarn dev
+RUN yarn start:production
 
 EXPOSE 8000
 
