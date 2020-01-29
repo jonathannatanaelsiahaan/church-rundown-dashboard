@@ -1,9 +1,19 @@
 import React from "react"
 import style from "components/css/register.css"
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 class Register extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            isPopupOpen: false,
+            error: ""
+        }
     }
 
     onClickHandler(event) {
@@ -23,10 +33,57 @@ class Register extends React.Component {
             }
         }
 
-        this.props.onClickListener(data);
+        const isValid = this.validate();
+
+        if(isValid) {
+            this.props.onClickListener(data);
+        }
+    }
+
+    validate() {
+        const name = document.querySelector("#name")
+        const username = document.querySelector("#username")
+        const password = document.querySelector("#password")
+
+        if(name.value == "") {
+            this.setState({
+                isPopupOpen: true,
+                error: "Name cannot empty"
+            })
+
+            return false;
+        }
+
+        if(username.value == "") {
+            this.setState({
+                isPopupOpen: true,
+                error: "Username cannot empty"
+            })
+
+            return false;
+        }
+
+        if(password.value == "") {
+            this.setState({
+                isPopupOpen: true,
+                error: "Password cannot empty"
+            })
+
+            return false;
+        }
+
+        return true
+    }
+
+    handleClosePopup() {
+        this.setState({
+            isPopupOpen: false
+        })
     }
 
     render() {
+        const isPopupOpen = this.state.isPopupOpen;
+        
         return (
             <div className={style.container}>
                 <div className={style.session}>
@@ -53,6 +110,22 @@ class Register extends React.Component {
                     <button type="submit" onClick={this.onClickHandler.bind(this)} className={style.login}>Finish</button>
                     </form>
                 </div>
+
+                <Dialog
+                    open={isPopupOpen}
+                    onClose={this.handleClosePopup.bind(this)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">{this.state.error}</DialogTitle>
+                        <DialogContent>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={this.handleClosePopup.bind(this)} color="primary">
+                            Ok
+                        </Button>
+                        </DialogActions>
+                </Dialog>
             </div>
         )
     }
