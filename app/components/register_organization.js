@@ -25,7 +25,9 @@ class Register extends React.Component {
             organizer: {
                 name: organizationDom.value,
                 description: "default description",
-                place: this.state.place
+                locationName: this.state.place.name,
+                locationLat: this.state.place.location.lat.toString(),
+                locationLng: this.state.place.location.lng.toString()
             }
         }
 

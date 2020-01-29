@@ -4,6 +4,7 @@ class OrganizerProtocol {
       this._id = element.ID;
       this._name = element.Name;
       this._description = element.Description;
+      this._location = element.location;
     }
 
     get primaryKey() {
@@ -22,11 +23,16 @@ class OrganizerProtocol {
       return this._description;
     }
 
+    get location() {
+      return this._location;
+    }
+
     toJson() {
       return {
         ID: this.id,
         name: this.name,
-        description: this.description
+        description: this.description,
+        location: this.location
       }
     }
 
@@ -34,7 +40,8 @@ class OrganizerProtocol {
       return {
         ID: this.id,
         name: this.name,
-        description: this.description
+        description: this.description,
+        location: this.location
       }
     }
   }

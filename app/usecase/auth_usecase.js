@@ -33,7 +33,7 @@ class AuthUsecase {
                 Store.dispatch(createUserAction);
                 Store.dispatch(createAccountAction);
 
-                window.location.replace("/dashboard");
+                // window.location.replace("/dashboard");
             } else {
                 var errorMessage = response.errorMessage;
 
