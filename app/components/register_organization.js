@@ -19,15 +19,15 @@ class Register extends React.Component {
 
     onClickHandler(event) {
         event.preventDefault();
-        const organizationDom = document.querySelector("#organization-name")
 
         const data = {
             organizer: {
-                name: organizationDom.value,
+                name: this.state.place.name,
                 description: "default description",
                 locationName: this.state.place.name,
                 locationLat: this.state.place.location.lat.toString(),
-                locationLng: this.state.place.location.lng.toString()
+                locationLng: this.state.place.location.lng.toString(),
+                locationAddress: this.state.place.address
             }
         }
 
@@ -39,17 +39,7 @@ class Register extends React.Component {
     }
 
     validate() {
-        const organizationDom = document.querySelector("#organization-name")
         const organizationLocationDom = document.querySelector("#organization-location")
-
-        if(organizationDom.value == "") {
-            this.setState({
-                isPopupOpen: true,
-                error: "Organization name cannot empty"
-            })
-
-            return false;
-        }
 
         if(organizationLocationDom.value == "") {
             this.setState({
@@ -89,11 +79,24 @@ class Register extends React.Component {
             return;
           }
 
+          console.log(places[0]);
+
           if(places[0].geometry == undefined || places[0].geometry == null) {
             this.setState({
                 isPopupOpen: true,
                 error: "Organization location must be a valid location"
             })
+
+            return
+          }
+
+          if(!places[0].types.includes("church") || !places[0].types.includes("place_of_worship")) {
+            this.setState({
+                isPopupOpen: true,
+                error: "Location type must be a church location type"
+            })
+
+            return
           }
           
           const place = {
@@ -101,7 +104,8 @@ class Register extends React.Component {
               location: {
                   lat: places[0].geometry.location.lat(),
                   lng: places[0].geometry.location.lng()
-              }
+              },
+              address: places[0].formatted_address
           };
 
           this.setState({
@@ -127,9 +131,8 @@ class Register extends React.Component {
                     </div>
                     <form action="" className={style.logIn} autocomplete="off"> 
                     <h4>Acara Gereja Dashboard</h4>
-                    <p>Welcome! Please Create Your Organization First</p>
+                    <p>Welcome! first let us know where your organization located</p>
                     <div className={style.floatingLabel}>
-                        <input placeholder="Organization Name" type="text" name="organization-name" id="organization-name" autocomplete="off"/>
                         <input onChange={this.onChangeHandler.bind(this)} placeholder="Location" type="text" name="organization-location" id="organization-location" autocomplete="off"/>
                         <div className={style.icon}>
                         </div>
