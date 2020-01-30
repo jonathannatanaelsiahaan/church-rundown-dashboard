@@ -79,8 +79,6 @@ class Register extends React.Component {
             return;
           }
 
-          console.log(places[0]);
-
           if(places[0].geometry == undefined || places[0].geometry == null) {
             this.setState({
                 isPopupOpen: true,
