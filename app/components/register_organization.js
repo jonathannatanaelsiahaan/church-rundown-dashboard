@@ -20,9 +20,12 @@ class Register extends React.Component {
     onClickHandler(event) {
         event.preventDefault();
 
+        const displayNameDom = document.querySelector("#display-name")
+
         const data = {
             organizer: {
                 name: this.state.place.name,
+                displayName: displayNameDom.value,
                 description: "default description",
                 locationName: this.state.place.name,
                 locationLat: this.state.place.location.lat.toString(),
@@ -40,11 +43,19 @@ class Register extends React.Component {
 
     validate() {
         const organizationLocationDom = document.querySelector("#organization-location")
+        const displayNameDom = document.querySelector("#display-name")
+
+        if(displayNameDom.value == "") {
+            this.setState({
+                isPopupOpen: true,
+                error: "Display Name cannot be empty"
+            })
+        }
 
         if(organizationLocationDom.value == "") {
             this.setState({
                 isPopupOpen: true,
-                error: "Organization location cannot empty"
+                error: "Location cannot be empty"
             })
 
             return false;
@@ -53,7 +64,7 @@ class Register extends React.Component {
         if(this.state.place == {} || this.state.place.name == undefined || this.state.place.location == undefined) {
             this.setState({
                 isPopupOpen: true,
-                error: "Organization location must be a valid location"
+                error: "Location field must be a valid location"
             })
 
             return false
@@ -78,6 +89,8 @@ class Register extends React.Component {
           if (places.length == 0) {
             return;
           }
+
+          console.log(places[0]);
 
           if(places[0].geometry == undefined || places[0].geometry == null) {
             this.setState({
@@ -131,6 +144,7 @@ class Register extends React.Component {
                     <h4>Acara Gereja Dashboard</h4>
                     <p>Welcome! first let us know where your organization located</p>
                     <div className={style.floatingLabel}>
+                        <input placeholder="Display Name" type="text" name="display-name" id="display-name" autocomplete="off"/>
                         <input onChange={this.onChangeHandler.bind(this)} placeholder="Location" type="text" name="organization-location" id="organization-location" autocomplete="off"/>
                         <div className={style.icon}>
                         </div>
