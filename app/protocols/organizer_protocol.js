@@ -3,6 +3,7 @@ class OrganizerProtocol {
       this._primaryKey = element.ID;
       this._id = element.ID;
       this._name = element.Name;
+      this._displayName = element.DisplayName || element.displayName;
       this._description = element.Description;
       this._location = element.location;
     }
@@ -19,6 +20,10 @@ class OrganizerProtocol {
       return this._name;
     }
 
+    get displayName() {
+      return this._displayName;
+    }
+
     get description() {
       return this._description;
     }
@@ -31,6 +36,7 @@ class OrganizerProtocol {
       return {
         ID: this.id,
         name: this.name,
+        displayName: this.displayName,
         description: this.description,
         location: this.location
       }
@@ -40,6 +46,7 @@ class OrganizerProtocol {
       return {
         ID: this.id,
         name: this.name,
+        displayName: this.displayName,
         description: this.description,
         location: this.location
       }

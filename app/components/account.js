@@ -27,12 +27,14 @@ class Account extends React.Component {
 		const organizerId = globalData.organizer.ID;
 
 		const organizerNameDom = document.querySelector("#organizerName");
+		const organizerDisplayNameDom = document.querySelector("#organizerDisplayName");
 		const organizerDescDom = document.querySelector("#organizerDesc");
 		const nameDom = document.querySelector("#name");
 		const usernameDom = document.querySelector("#username");
 		const passwordDom = document.querySelector("#password");
 
 		const organizerName = organizerNameDom.value || organizerNameDom.placeholder;
+		const organizerDisplayName = organizerDisplayNameDom.value || organizerDisplayNameDom.placeholder;
 		const organizerDesc = organizerDescDom.value || organizerDescDom.placeholder;
 
 		const userId = globalData.user.id;
@@ -55,6 +57,7 @@ class Account extends React.Component {
 			organizer: {
 				id: organizerId,
 				name: organizerName,
+				displayName: organizerDisplayName,
 				description: organizerDesc
 			}
 		};
@@ -73,6 +76,7 @@ class Account extends React.Component {
 			}
 			
 			document.querySelector("#organizerName").value = "";
+			document.querySelector("#organizerDisplayName").value = "";
 			document.querySelector("#organizerDesc").value = "";
 			document.querySelector("#name").value = "";
 			document.querySelector("#username").value = "";
@@ -148,6 +152,17 @@ class Account extends React.Component {
 						label="Organizer Name"
 						style={{ margin: 8 }}
 						placeholder={organizer.name}
+						fullWidth
+						margin="normal"
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
+					<TextField
+						id="organizerDisplayName"
+						label="Organizer Display Name"
+						style={{ margin: 8 }}
+						placeholder={organizer.displayName}
 						fullWidth
 						margin="normal"
 						InputLabelProps={{
