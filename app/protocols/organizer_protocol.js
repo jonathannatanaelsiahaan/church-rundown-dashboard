@@ -6,6 +6,8 @@ class OrganizerProtocol {
       this._displayName = element.DisplayName || element.displayName;
       this._description = element.Description;
       this._location = element.location;
+      this._city = element.City | element.city;
+      this._nation = element.Nation | element.nation;
     }
 
     get primaryKey() {
@@ -32,13 +34,23 @@ class OrganizerProtocol {
       return this._location;
     }
 
+    get city() {
+      return this._city;
+    }
+
+    get nation() {
+      return this._nation;
+    }
+
     toJson() {
       return {
         ID: this.id,
         name: this.name,
         displayName: this.displayName,
         description: this.description,
-        location: this.location
+        location: this.location,
+        city: this.city,
+        nation: this.nation
       }
     }
 
@@ -48,7 +60,9 @@ class OrganizerProtocol {
         name: this.name,
         displayName: this.displayName,
         description: this.description,
-        location: this.location
+        location: this.location,
+        city: this.city,
+        nation: this.nation
       }
     }
   }

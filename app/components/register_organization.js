@@ -30,7 +30,9 @@ class Register extends React.Component {
                 locationName: this.state.place.name,
                 locationLat: this.state.place.location.lat.toString(),
                 locationLng: this.state.place.location.lng.toString(),
-                locationAddress: this.state.place.address
+                locationAddress: this.state.place.address,
+                city: this.state.place.city,
+                nation: this.state.place.nation
             }
         }
 
@@ -90,6 +92,19 @@ class Register extends React.Component {
             return;
           }
 
+          var city = ''
+          var nation = ''
+
+          for(var i = 0; i < places[0].address_components.length; i++) {
+            if(places[0].address_components[i].types.includes("administrative_area_level_2")) {
+                city = places[0].address_components[i].long_name;
+            }
+
+            if(places[0].address_components[i].types.includes("country")) {
+                nation = places[0].address_components[i].long_name;
+            }
+          }
+
           console.log(places[0]);
 
           if(places[0].geometry == undefined || places[0].geometry == null) {
@@ -116,7 +131,9 @@ class Register extends React.Component {
                   lat: places[0].geometry.location.lat(),
                   lng: places[0].geometry.location.lng()
               },
-              address: places[0].formatted_address
+              address: places[0].formatted_address,
+              city: city,
+              nation: nation
           };
 
           this.setState({
