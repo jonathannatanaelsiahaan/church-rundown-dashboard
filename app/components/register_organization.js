@@ -32,6 +32,7 @@ class Register extends React.Component {
                 locationLng: this.state.place.location.lng.toString(),
                 locationAddress: this.state.place.address,
                 city: this.state.place.city,
+                province: this.state.place.province,
                 nation: this.state.place.nation
             }
         }
@@ -94,10 +95,15 @@ class Register extends React.Component {
 
           var city = ''
           var nation = ''
+          var province = ''
 
           for(var i = 0; i < places[0].address_components.length; i++) {
             if(places[0].address_components[i].types.includes("administrative_area_level_2")) {
                 city = places[0].address_components[i].long_name;
+            }
+
+            if(places[0].address_components[i].types.includes("administrative_area_level_1")) {
+                province = places[0].address_components[i].long_name;
             }
 
             if(places[0].address_components[i].types.includes("country")) {
@@ -133,6 +139,7 @@ class Register extends React.Component {
               },
               address: places[0].formatted_address,
               city: city,
+              province: province,
               nation: nation
           };
 
