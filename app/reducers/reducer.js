@@ -16,7 +16,11 @@ class Reducer {
     rundownItems: ProtocolReducer.build("rundownItems"),
     accounts: ProtocolReducer.build("accounts"),
     users: ProtocolReducer.build("users"),
-    organizers: ProtocolReducer.build("organizers")
+    organizers: ProtocolReducer.build("organizers"),
+    concregations: ProtocolReducer.build("concregations"),
+    deviceInventorys: ProtocolReducer.build("deviceInventorys"),
+    serviceSchedules: ProtocolReducer.build("serviceSchedules"),
+    sectorCoordinators: ProtocolReducer.build("sectorCoordinators")
   });
 
 }

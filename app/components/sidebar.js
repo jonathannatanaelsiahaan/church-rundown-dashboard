@@ -21,9 +21,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import DevicesIcon from '@material-ui/icons/Devices';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
 import AccountMenu from "components/account"
 import RundownMenu from "components/rundown_menu"
+import ConcregationMenu from "components/concregation_menu"
+import DeviceInventoryMenu from "components/device_inventory_menu"
+import ServiceScheduleMenu from "components/service_schedule_menu"
+import SectorCoordinatorMenu from "components/sector_coordinator_menu"
 import LogoutForm from './logout_form';
 
 const drawerWidth = 240;
@@ -127,6 +134,22 @@ export default function Dashboard() {
       setOpenedMenu("Rundown");
   }
 
+  const handleConcregationMenuOpen = () => {
+      setOpenedMenu("Concregation");
+  }
+
+  const handleDeviceInventoryMenuOpen = () => {
+      setOpenedMenu("DeviceInventory");
+  }
+
+  const handleServiceScheduleMenuOpen = () => {
+      setOpenedMenu("ServiceSchedule");
+  }
+
+  const handleSectorCoordinatorMenuOpen = () => {
+      setOpenedMenu("SectorCoordinator");
+  }
+
   const handleClosePopup = () => {
     setIsPopUpOpened(false);
   }
@@ -143,6 +166,22 @@ export default function Dashboard() {
 
   if(menu == "Rundown") {
       contentMenu =  <RundownMenu />
+  }
+
+  if(menu == "Concregation") {
+    contentMenu = <ConcregationMenu />
+  }
+
+  if(menu == "DeviceInventory") {
+    contentMenu = <DeviceInventoryMenu />
+  }
+
+  if(menu == "ServiceSchedule") {
+    contentMenu = <ServiceScheduleMenu />
+  }
+
+  if(menu == "SectorCoordinator") {
+    contentMenu = <SectorCoordinatorMenu />
   }
 
   return (
@@ -191,16 +230,40 @@ export default function Dashboard() {
         <List>
             <div>
                 <ListItem button onClick={handleAccountMenuOpen}>
-                <ListItemIcon>
-                    <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Account" />
+                  <ListItemIcon>
+                      <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Akun" />
                 </ListItem>
                 <ListItem button onClick={handleRundownMenuOpen}>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Rundown" />
+                  <ListItemIcon>
+                      <AssignmentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Tata Acara Ibadah" />
+                </ListItem>
+                <ListItem button onClick={handleConcregationMenuOpen}>
+                  <ListItemIcon>
+                      <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Data Jemaat" />
+                </ListItem>
+                <ListItem button onClick={handleDeviceInventoryMenuOpen}>
+                  <ListItemIcon>
+                      <DevicesIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Inventory Perangkat" />
+                </ListItem>
+                <ListItem button onClick={handleServiceScheduleMenuOpen}>
+                  <ListItemIcon>
+                      <ScheduleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Jadwal Pelayanan" />
+                </ListItem>
+                <ListItem button onClick={handleSectorCoordinatorMenuOpen}>
+                  <ListItemIcon>
+                      <SupervisedUserCircleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Kordinator Sektor" />
                 </ListItem>
             </div>
         </List>
