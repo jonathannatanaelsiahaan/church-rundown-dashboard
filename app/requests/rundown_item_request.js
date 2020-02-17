@@ -1,6 +1,6 @@
 class RundownItemRequest {
     static getByRundownId(rundownId, response){
-        fetch('{$API_URL}/public/rundown_item/' + rundownId, {
+        fetch(API_URL + '/public/rundown_item/' + rundownId, {
             method: 'get'
         }).then(function(response) {
             return response.json()
