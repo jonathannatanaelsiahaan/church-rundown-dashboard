@@ -30,6 +30,8 @@ class RundownItemList extends React.Component {
                 <Button aria-label="Back" onClick={this.handleClick.bind(this)}>
                     <ArrowBackIcon /> Back
                 </Button>
+                
+                <RundownItemToolbar createButtonLabel="Create New Rundown Item" rundownId={this.props.rundownId}/>
                 <List 
                     component="nav"
                     aria-labelledby="nested-list-subheader"
@@ -42,8 +44,6 @@ class RundownItemList extends React.Component {
                         )
 					})}
                 </List>
-
-                <RundownItemToolbar createButtonLabel="Create New Rundown Item" rundownId={this.props.rundownId}/>
             </div>
 		);
 	}

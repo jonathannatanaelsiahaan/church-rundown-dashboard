@@ -33,6 +33,8 @@ class RundownItemToolbar extends React.Component {
                     <AddIcon /> {this.props.createButtonLabel}
                 </Button>
                 <Dialog
+                    maxWidth="xl"
+                    fullWidth={true}
                     open={isPopupOpen}
                     onClose={this.handleClosePopup.bind(this)}
                     aria-labelledby="alert-dialog-title"
