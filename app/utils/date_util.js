@@ -48,6 +48,31 @@ class DateUtil {
 
       return date.getFullYear() + "-" + displayedMonth + "-" + displayedDate + "T" + displayedHours + ":" + displayedMinutes
     }
+
+    static convertToISO(date) {
+      var displayedDate = date.getDate()
+      var displayedMonth = date.getMonth()
+      var displayedHours = date.getHours()
+      var displayedMinutes = date.getMinutes()
+
+      if(displayedDate < 10) {
+        displayedDate = "0" + displayedDate;
+      }
+
+      if(displayedMonth < 10) {
+        displayedMonth = "0" + (displayedMonth + 1);
+      }
+
+      if(displayedHours < 10) {
+        displayedHours = "0" + displayedHours;
+      }
+
+      if(displayedMinutes < 10) {
+        displayedMinutes = "0" + displayedMinutes;
+      }
+
+      return date.getFullYear() + "-" + displayedMonth + "-" + displayedDate + "T" + displayedHours + ":" + displayedMinutes + ":00Z"
+    }
 }
 
 export default DateUtil;

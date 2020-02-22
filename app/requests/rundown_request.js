@@ -9,6 +9,16 @@ class RundownRequest {
         })
     }
 
+    static getByOrganizerIdAndDate(organizerId, startDate, endDate, response) {
+        fetch(API_URL + '/public/rundown/' + organizerId + '?startDate=' + startDate + '&endDate=' + endDate, {
+            method: 'get'
+        }).then(function(response) {
+            return response.json()
+        }).then(function(data) {
+            response(data)
+        })
+    }
+
     static update(rundown, callback) {
         fetch(API_URL + '/admin/rundown', {
             method: 'put',

@@ -38,6 +38,17 @@ class RundownUsecase {
         })
     }
 
+    static fetchByFilter(rundown) {
+        const organizerId = JSON.parse(localStorage.getItem('data')).organizer.ID
+        RundownRequest.getByOrganizerIdAndDate(organizerId, rundown.showTime, rundown.endTime, result => {
+            if(result.status == 200) {
+                const rundown = JSON.parse(result.data)
+                const createRundownAction = RundownAction.create(rundown)
+                Store.dispatch(createRundownAction)
+            }
+        })
+    }
+
     static delete(rundown) {
         RundownRequest.delete(rundown.ID, result => {
             if(result.status == 200) {

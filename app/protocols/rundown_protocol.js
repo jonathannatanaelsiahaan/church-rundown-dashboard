@@ -61,6 +61,8 @@ class RundownProtocol {
         subtitle: this.subtitle,
         showTime: DateUtil.convertToDisplayedDate(new Date(this.showTime)),
         endTime: DateUtil.convertToDisplayedDate(new Date(this.endTime)),
+        startDate: new Date(this.showTime).toISOString(),
+        endDate: new Date(this.endTime).toISOString(),
         organizerID: this.organizerId
       }
     }

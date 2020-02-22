@@ -1,5 +1,5 @@
 import React from "react";
-import RundownList from "components/rundown_list";
+import RundownListContainer from "components/rundown_list_container";
 import RundownItemList from "components/rundown_item_list";
 
 class RundownMenu extends React.Component {
@@ -30,7 +30,7 @@ class RundownMenu extends React.Component {
 	render() {
 		if(this.state.showRundownList) {
 			return (
-				<RundownList onClickHandler={this.handleClickOnRundownList.bind(this)}/>
+				<RundownListContainer onClickHandler={this.handleClickOnRundownList.bind(this)}/>
 			);
 		}
 
