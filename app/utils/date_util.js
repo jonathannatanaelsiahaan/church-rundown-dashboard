@@ -35,7 +35,7 @@ class DateUtil {
       }
 
       if(displayedMonth < 10) {
-        displayedMonth = "0" + displayedMonth;
+        displayedMonth = "0" + (displayedMonth + 1);
       }
 
       if(displayedHours < 10) {
