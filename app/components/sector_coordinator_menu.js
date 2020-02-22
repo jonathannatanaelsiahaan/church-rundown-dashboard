@@ -183,6 +183,8 @@ class SectorCoordinatorMenu extends React.Component {
 						<AddIcon /> Create New Kordinator Sektor
 					</Button>
 					<Dialog
+						maxWidth="md"
+						fullWidth={true}
 						open={isPopupOpen}
 						onClose={this.handleClosePopup.bind(this)}
 						aria-labelledby="alert-dialog-title"

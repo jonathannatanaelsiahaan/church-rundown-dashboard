@@ -24,7 +24,7 @@ class Register extends React.Component {
 
         const data = {
             organizer: {
-                name: this.state.place.name,
+                name: displayNameDom.value,
                 displayName: displayNameDom.value,
                 description: "default description",
                 locationName: this.state.place.name,
@@ -117,15 +117,6 @@ class Register extends React.Component {
             this.setState({
                 isPopupOpen: true,
                 error: "Organization location must be a valid location"
-            })
-
-            return
-          }
-
-          if(!places[0].types.includes("church") || !places[0].types.includes("place_of_worship")) {
-            this.setState({
-                isPopupOpen: true,
-                error: "Location type must be a church location type"
             })
 
             return
