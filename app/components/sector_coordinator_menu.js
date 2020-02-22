@@ -105,10 +105,6 @@ class SectorCoordinatorMenu extends React.Component {
 			</Button>
 		); 
 
-		if(concregations == null || concregations == {} || Object.values(concregations).length == 0) {
-			return (<div/>)
-		}
-
 		if(this.state.exportToPdf) {
 			pdfMenu = <SectorCoordinatorMenuPdf concregations={concregations} sectorCoordinators={sectorCoordinators}/>;
 		}
